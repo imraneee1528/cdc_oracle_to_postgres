@@ -1,0 +1,20 @@
+[Unit]
+Description=Kafka Connector  Daemon
+Documentation=http://kafka.apache.org
+Requires=network.target
+After=network.target
+
+[Service]
+Type=forking
+WorkingDirectory=/opt/kafka
+User=root
+Group=root
+#LimitNOFILE=30000
+#Environment="KAFKA_OPTS=-javaagent:/opt/kafka/libs/jmx_prometheus_javaagent-0.17.2.jar=7075:/opt/kafka/config/kafka-2_0_0.yml"
+ExecStart=/opt/kafka/bin/connect-standalone.sh  -daemon /opt/kafka/config/connect-standalone.properties  
+#ExecStop=/opt/kafka/bin/kafka-server-stop.sh -daemon /opt/kafka/config/server.properties
+TimeoutSec=30
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
