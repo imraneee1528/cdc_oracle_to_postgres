@@ -1,0 +1,60 @@
+Kafka is a distributed Message streamin platform that use publish and subscribe machinism to stream the recornds. 
+Originally developed by linkidin and later donated to apache foundation.
+Kafka is a opensource platform .
+
+
+
+A messaging system is responsible for transfering data from one application to 
+anather so the application can focus on data without getting bogged down on data transmission and sharing 
+
+Two types-
+1. Point to Point Messaging System 
+ > Massages are persisted in a Queue
+ > Aparticular message can be consumed by a maximum of one receiver only.
+ > there is no time dependency laid for the receiver to receive the message 
+ when the Receives the message .it will sent an acknowledgement back to the senders .
+ 
+
+ 2. Publish-Subscribe Messaging System 
+ >Messages are persisted in a Topic.
+ > A particular message can be consumed by any number of consumers .
+ >There is time dependency laid for the consumer to consume the message.
+ > When the Subscriber receives the message .it doesn't send an acknowledgement back to the  Publisher.
+ 
+ Topics -- A  stream of messages belongs to a particular category is called a topic.
+ it is a logical feed name to which records are published.
+ Similarly to a table in a databse 
+ Unique identifier of topiv is its Name.
+ We can create as many topics as we want .
+ 
+ Partitions --- Topics are spilt in Partitions.
+ All the massage within a partions are ordered and immutable 
+ Each message wi
+ thin a partition has a unique id associate known as Offset 
+ 
+ partition are uses round robin rule to distribute each others in brokers 
+ 
+ ---Replica and Replication - Replica are backup of partition . Replicas are never read or write data.They are used to prevent data loss.
+ 
+ ---Producer are applications which write or publish data to the topics within a cluster usining the Producing APIs.
+ Producer can write data either on the topic level or specific partitions of the topics.
+ 
+ ---Consumers are applications which read/ consume date from the topics within a cluster usining the Consuming APIs
+ Consumers can read data either topics level or specific partitions of topics 
+ A consumer Group is a group of related consumers that perform a task
+ 
+--- Broker --- Brokers are simple software process who maintain and manage the publishes message .Also known as kafka servers.
+Brokers also manage the consumer-offsets and responsible for the delivery of messages to the right consumers.
+Aset of brokers who are communicating with each othres to perform the management and maintanence task are collectively known as Kafka Cluster 
+
+We can add more brokens in a already running kafka cluster without any downtime .
+
+
+---Zookeeper is used to monitor kafka cluster and co-ordinate with each broker .
+Keeps all the metadata informations related to kafka cluster in the form of a key value pair 
+
+Metadata includes 
+1. Confiuration information
+2.Health status or each broker 
+It is used for the controller election 
+
