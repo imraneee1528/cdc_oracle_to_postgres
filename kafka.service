@@ -9,8 +9,8 @@ Type=forking
 WorkingDirectory=/opt/kafka
 User=root
 Group=root
-LimitNOFILE=30000
-Environment="KAFKA_OPTS=-javaagent:/opt/kafka/libs/jmx_prometheus_javaagent-0.17.2.jar=7075:/opt/kafka/config/kafka-2_0_0.yml"
+#LimitNOFILE=30000
+#Environment="KAFKA_OPTS=-javaagent:/opt/kafka/libs/jmx_prometheus_javaagent-0.17.2.jar=7075:/opt/kafka/config/kafka-2_0_0.yml"
 ExecStart=/opt/kafka/bin/kafka-server-start.sh -daemon /opt/kafka/config/server.properties
 ExecStop=/opt/kafka/bin/kafka-server-stop.sh -daemon /opt/kafka/config/server.properties
 TimeoutSec=30
