@@ -1,20 +1,20 @@
 [Unit]
 Description=Zookeeper Daemon
-Documentation=http://zookeeper.apache.org
+Documentation=http://kafka.apache.org
 Requires=network.target
 After=network.target
 
 [Service]
 Type=forking
-WorkingDirectory=/opt/zookeeper
+WorkingDirectory=/opt/kafka
 User=root
 Group=root
-LimitNOFILE=3000
-ExecStart=/opt/zookeeper/bin/zkServer.sh start /opt/zookeeper/conf/zoo.cfg
-ExecStop=/opt/zookeeper/bin/zkServer.sh stop /opt/zookeeper/conf/zoo.cfg
-ExecReload=/opt/zookeeper/bin/zkServer.sh restart /opt/zookeeper/conf/zoo.cfg
+#LimitNOFILE=30000
+#Environment="KAFKA_OPTS=-javaagent:/opt/kafka/libs/jmx_prometheus_javaagent-0.17.2.jar=7075:/opt/kafka/config/kafka-2_0_0.yml"
+ExecStart=/opt/kafka/bin/zookeeper-server-start.sh -daemon /opt/kafka/config/zookeeper.properties
+ExecStop=/opt/kafka/bin/zookeeper-server-stop.sh    -daemon /opt/kafka/config/zookeeper.properties
 TimeoutSec=30
-#Restart=on-failure
+Restart=on-failure
 
 [Install]
 WantedBy=default.target
