@@ -68,4 +68,24 @@ CREATE OR REPLACE DIRECTORY ARCHIVELOG_DIR AS '/u01/app/oracle/archivelog';
 GRANT READ ON DIRECTORY ARCHIVELOG_DIR TO debezium;
 </pre>
 
-#### 
+#### Add this for oracle 
+
+<pre>
+curl -i -X POST     -H "Content-Type: application/json"     -d '{
+"name":"oracle-src-connector",
+"config":{
+"connector.class":"io.debezium.connector.oracle.OracleConnector",
+"tasks.max":"1",
+"database.hostname":"192.168.122.76",
+"database.port":"1521",
+"database.user":"debezium",
+"database.password":"Tirzok_123",
+"database.dbname" : "pdbtest",
+"table.include.list": "demouser.employees",
+"topic.prefix":"server_oracle",
+"schema.history.internal.kafka.topic":"schmhistory.core_banking",
+"schema.history.internal.kafka.bootstrap.servers":"localhost:9092"
+ }
+   }'     http://localhost:8083/connectors
+  
+</pre>
